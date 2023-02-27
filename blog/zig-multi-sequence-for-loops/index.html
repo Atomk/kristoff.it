@@ -138,12 +138,12 @@ alignment (because its type is <code>usize</code>, which has
 8 byte alignment on common 64bit machines).</p><p>Luckily, this is done automatically by Zig (you can
 use a <code>extern struct</code> if you want field ordering to
 work like in C), but even then, the struct has
-alignment 8 and size 35, which means that it needs
-13 bytes of padding at the end to keep the alignment
+alignment 8 and size 42, which means that it needs
+6 bytes of padding at the end to keep the alignment
 consistent in an array (ie <code>@sizeOf([2]Monster) == 96</code>),
 so in the end some padding is inevitable given the size
-of our fields. 13 bytes might not seem much, but it does
-mean that each monster instance wastes roughly 14% of
+of our fields. 6 bytes might not seem much, but it does
+mean that each monster instance wastes roughly 15% of
 its size just for padding.</p><p>One technique that lets us prevent that waste is to avoid
 representing our monsters as an array of structs (AoS), and
 instead &ldquo;deconstruct&rdquo; them into multiple arrays, one per
@@ -156,9 +156,9 @@ tick of our game. This means that every tick we want to
 look at each monster&rsquo;s <code>elem_type</code> and based on that we
 increment its <code>hp</code> by one.</p><p>If we were to do this with the original array-of-structs
 layout, for each monster we would have to load from
-memory 46 bytes of data that we don&rsquo;t care about (33
-from the <code>dna</code> field, plus 13 of padding) over the 9
-bytes that we do need. That&rsquo;s a waste rate of 500%!</p><p>With the struct-of-arrays layout we only load from memory
+memory 39 bytes of data that we don&rsquo;t care about (33
+from the <code>dna</code> field, plus 6 of padding) over the 9
+bytes that we do need. That&rsquo;s a waste rate of more than 400%!</p><p>With the struct-of-arrays layout we only load from memory
 data that we do care about, which can have a tremendous
 effect on performance.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zig data-lang=zig><span style=display:flex><span><span style=color:#66d9ef>for</span> (monster_elem_types, monster_hps) <span style=color:#f92672>|</span>et, <span style=color:#f92672>*</span>hp<span style=color:#f92672>|</span> {
 </span></span><span style=display:flex><span>   <span style=color:#66d9ef>if</span> (et <span style=color:#f92672>==</span> .fire) hp.<span style=color:#f92672>*</span> <span style=color:#f92672>+|=</span> <span style=color:#ae81ff>1</span>; <span style=color:#75715e>// saturating addition
