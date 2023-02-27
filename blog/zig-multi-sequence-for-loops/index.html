@@ -44,7 +44,7 @@ a new construct in Zig.</p><div class=highlight><pre tabindex=0 style=color:#f8f
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>This prints:</p><pre tabindex=0><code>10 11 12 13 14
 </code></pre><h2 id=multi-sequence-syntax>Multi-sequence syntax</h2><p>The new multi-sequence syntax allows you to loop over
-two or more arrays or slices at the same time:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zig data-lang=zig><span style=display:flex><span><span style=color:#66d9ef>var</span> elems <span style=color:#f92672>=</span> [_][]<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>u8</span> { <span style=color:#e6db74>&#34;water&#34;</span>, <span style=color:#e6db74>&#34;earth&#34;</span>, <span style=color:#e6db74>&#34;fire&#34;</span>, <span style=color:#e6db74>&#34;wind&#34;</span> };
+two or more arrays or slices at the same time:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zig data-lang=zig><span style=display:flex><span><span style=color:#66d9ef>var</span> elems <span style=color:#f92672>=</span> [_][]<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>u8</span> { <span style=color:#e6db74>&#34;water&#34;</span>, <span style=color:#e6db74>&#34;earth&#34;</span>, <span style=color:#e6db74>&#34;fire&#34;</span>, <span style=color:#e6db74>&#34;air&#34;</span> };
 </span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> nats <span style=color:#f92672>=</span> [_][]<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>u8</span> { <span style=color:#e6db74>&#34;tribes&#34;</span>, <span style=color:#e6db74>&#34;kingdom&#34;</span>, <span style=color:#e6db74>&#34;nation&#34;</span>, <span style=color:#e6db74>&#34;nomads&#34;</span> };
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (elems, nats) <span style=color:#f92672>|</span>e, n<span style=color:#f92672>|</span> {
@@ -53,7 +53,7 @@ two or more arrays or slices at the same time:</p><div class=highlight><pre tabi
 </span></span></code></pre></div><p>This prints:</p><pre tabindex=0><code>water tribes
 earth kingdom
 fire nation
-wind nomads
+air nomads
 </code></pre><p>There&rsquo;s only one simple rule when it comes to the
 length of the sequences: <strong>all lengths must match</strong>.
 Passing arrays of different length is safety-checked
@@ -62,7 +62,7 @@ element&rsquo;s index, you can add a range to the list of
 sequences you want to iterate. <strong>Since all sequences
 must have the same length, you can omit the upper end
 of the range and let Zig automatically infer it from
-the other sequences</strong>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zig data-lang=zig><span style=display:flex><span><span style=color:#66d9ef>var</span> elems <span style=color:#f92672>=</span> [_][]<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>u8</span> { <span style=color:#e6db74>&#34;water&#34;</span>, <span style=color:#e6db74>&#34;earth&#34;</span>, <span style=color:#e6db74>&#34;fire&#34;</span>, <span style=color:#e6db74>&#34;wind&#34;</span> };
+the other sequences</strong>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zig data-lang=zig><span style=display:flex><span><span style=color:#66d9ef>var</span> elems <span style=color:#f92672>=</span> [_][]<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>u8</span> { <span style=color:#e6db74>&#34;water&#34;</span>, <span style=color:#e6db74>&#34;earth&#34;</span>, <span style=color:#e6db74>&#34;fire&#34;</span>, <span style=color:#e6db74>&#34;air&#34;</span> };
 </span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> nats <span style=color:#f92672>=</span> [_][]<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>u8</span> { <span style=color:#e6db74>&#34;tribes&#34;</span>, <span style=color:#e6db74>&#34;kingdom&#34;</span>, <span style=color:#e6db74>&#34;nation&#34;</span>, <span style=color:#e6db74>&#34;nomads&#34;</span> };
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (elems, nats, <span style=color:#ae81ff>0</span>..) <span style=color:#f92672>|</span>e, n, idx<span style=color:#f92672>|</span> {
@@ -71,7 +71,7 @@ the other sequences</strong>.</p><div class=highlight><pre tabindex=0 style=colo
 </span></span></code></pre></div><p>This prints:</p><pre tabindex=0><code>0 - water tribes
 1 - earth kingdom
 2 - fire nation
-3 - wind nomads
+3 - air nomads
 </code></pre><h2 id=other-properties-of-for-loops>Other properties of <code>for</code> loops</h2><p>Up until now we saw the new changes to <code>for</code> loops,
 but if you&rsquo;re new to Zig you might not know all the
 other things they support, so I&rsquo;ll quickly recap
