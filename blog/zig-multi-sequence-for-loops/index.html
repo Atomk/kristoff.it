@@ -125,7 +125,7 @@ element type, a counter for hit points, and a unique
 each monster&rsquo;s offspring (and to give an early taste
 of how it feels to play with slot machines to young
 kids).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-zig data-lang=zig><span style=display:flex><span><span style=color:#66d9ef>const</span> Monster <span style=color:#f92672>=</span> <span style=color:#66d9ef>struct</span> {
-</span></span><span style=display:flex><span>   elem_type<span style=color:#f92672>:</span> <span style=color:#66d9ef>enum</span>{ fire, water, air, earth },
+</span></span><span style=display:flex><span>   elem_type<span style=color:#f92672>:</span> <span style=color:#66d9ef>enum</span>{ fire, water, wind, earth },
 </span></span><span style=display:flex><span>   hp<span style=color:#f92672>:</span> <span style=color:#66d9ef>usize</span>,
 </span></span><span style=display:flex><span>   dna<span style=color:#f92672>:</span> [<span style=color:#ae81ff>33</span>]<span style=color:#66d9ef>u8</span>, <span style=color:#75715e>// gambling department demands 
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>                <span style=color:#75715e>// we use exactly 33 bytes
@@ -221,5 +221,7 @@ multi-sequence <code>for</code> loops ensure that we get all the
 safety of out-of-bounds checks without impacting runtime
 performance nor compromising on compilation times.</p><p>If you like where we&rsquo;re going, please consider
 <a href=https://ziglang.org/zsf/>sponsoring the Zig Software Foundation</a>.</p></div><hr><div id=prev-next><a href=/blog/zig-self-hosted-now-what/>← Zig Is Self-Hosted Now, What's Next?</a>
+&nbsp; • &nbsp;
+<a href=/blog/note-about-zig-books/>A Note About Zig Books for the Zig Community →</a>
 <small>&nbsp; or &nbsp;</small>
 <small><a href=/>Back to the Homepage</a></small></div></div></body></html>
